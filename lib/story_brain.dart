@@ -62,28 +62,20 @@ class StoryBrain {
   int _storyNumber = 0;
 //TODO: Step 17 - Create a method called nextStory(), it should not have any outputs but it should have 1 input called choiceNumber which will be the choice number (int) made by the user.
   void nextStory(int choiceNumber) {
-    if (choiceNumber == 1 && _storyNumber == 0) {
-      _storyNumber = 2;
-    } else if (choiceNumber == 2 && _storyNumber == 0) {
-      _storyNumber = 1;
-    } else if (choiceNumber == 1 && _storyNumber == 1) {
-      _storyNumber = 2;
-    } else if (choiceNumber == 2 && _storyNumber == 1) {
-      _storyNumber = 3;
-    } else if (choiceNumber == 1 && _storyNumber == 2) {
-      _storyNumber = 5;
-    } else if (choiceNumber == 2 && _storyNumber == 2) {
-      _storyNumber = 4;
-    } else if (_storyNumber == 3 || _storyNumber == 4 || _storyNumber == 5) {
+    List<int> endStoriesBranch = [3, 4, 5];
+    if (endStoriesBranch.contains(_storyNumber)) {
       restart();
+    } else {
+      _storyNumber = choicesTree[_storyNumber][choiceNumber];
     }
   }
 
-//  Map<int, Map<int, int>> choicesTree = {
-//    0: {1: 2, 2: 1},
-//    2: {1: 5, 2: 4},
-//    1: {1: 2, 2: 3},
-//  };
+  Map<int, Map<int, int>> choicesTree = {
+    0: {1: 2, 2: 1},
+    2: {1: 5, 2: 4},
+    1: {1: 2, 2: 3},
+  };
+
 //TODO: Step 20 - Download the story plan here: https://drive.google.com/uc?export=download&id=1KU6EghkO9Hf2hRM0756xFHgNaZyGCou3
 
 //TODO: Step 21 - Using the story plan, update nextStory() to change the storyNumber depending on the choice made by the user. e.g. if choiceNumber was equal to 1 and the storyNumber is 0, the storyNumber should become 2.
